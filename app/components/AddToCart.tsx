@@ -3,6 +3,7 @@
 import { Check, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "./LanguageProvider";
+import { PURCHASES_ENABLED } from "../lib/product";
 
 export type Variant = { cable: string; temperature: string; size: string; price: number };
 
@@ -10,6 +11,7 @@ export function AddToCart({ compact = false, variant }: { compact?: boolean; var
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const { t } = useLanguage();
+  if (!PURCHASES_ENABLED) return <p className="purchase-status">{t("purchasesSoon")}</p>;
   const add = () => {
     localStorage.setItem("triade-cart", String(Number(localStorage.getItem("triade-cart") || 0) + qty));
     localStorage.setItem("triade-variant", JSON.stringify(variant));

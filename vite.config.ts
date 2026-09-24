@@ -44,6 +44,12 @@ export default defineConfig(async () => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    // Keep the design imagery available at its stable `/images/...` URLs in
+    // both the local preview and the published Sites artifact.
+    publicDir: "public",
+    build: {
+      copyPublicDir: true,
+    },
     server: {
       host: "0.0.0.0",
       allowedHosts: ["terminal.local"],

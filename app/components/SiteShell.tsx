@@ -1,21 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, ShoppingBag, UserRound, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLanguage } from "./LanguageProvider";
 
 export function SiteHeader({ dark = true }: { dark?: boolean }) {
   const [open, setOpen] = useState(false);
-  const [count, setCount] = useState(0);
   const { language, setLanguage, t } = useLanguage();
-
-  useEffect(() => {
-    const update = () => setCount(Number(localStorage.getItem("triade-cart") || 0));
-    update();
-    window.addEventListener("cart-update", update);
-    return () => window.removeEventListener("cart-update", update);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -52,10 +44,6 @@ export function SiteHeader({ dark = true }: { dark?: boolean }) {
             <i aria-hidden="true">/</i>
             <button className={language === "en" ? "active" : ""} onClick={() => setLanguage("en")}>EN</button>
           </div>
-          <button aria-label={t("account")}><UserRound size={18} strokeWidth={1.5} /></button>
-          <Link href="/cart" aria-label={`${t("cart")}, ${count}`} className="cart-icon">
-            <ShoppingBag size={18} strokeWidth={1.5} />{count > 0 && <span>{count}</span>}
-          </Link>
           <button
             className="menu-button"
             aria-label={t("openMenu")}
@@ -86,8 +74,7 @@ export function SiteHeader({ dark = true }: { dark?: boolean }) {
               <i aria-hidden="true">/</i>
               <button className={language === "en" ? "active" : ""} onClick={() => setLanguage("en")}>EN</button>
             </div>
-            <Link href="/cart" onClick={() => setOpen(false)}>{t("cart")} ({count})</Link>
-            <Link href="/product" className="mobile-buy" onClick={() => setOpen(false)}>{t("buyTriade")}</Link>
+            <span className="mobile-purchase-status">{t("purchasesSoon")}</span>
           </div>
         </aside>
       )}
@@ -101,7 +88,7 @@ export function Footer() {
     <footer className="footer">
       <div className="brand">CURZ STUDIO</div>
       <p>{t("footerClaim")}</p>
-      <div><Link href="/product">Triade</Link><Link href="/design">Design</Link><a href="mailto:studio@curz.design">{t("contacts")}</a></div>
+      <div><Link href="/#prodotto">Triade</Link><Link href="/design">Design</Link><a href="mailto:studio@curz.design">{t("contacts")}</a></div>
       <p className="footer-small">© 2026 Curz Studio · Privacy · Cookie</p>
     </footer>
   );

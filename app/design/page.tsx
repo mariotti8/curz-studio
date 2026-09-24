@@ -17,7 +17,7 @@ export default function DesignPage() {
       <blockquote>{t("quote")}<cite>Curz Studio, designer</cite></blockquote>
     </section>
     <section className="designer"><div><p className="section-label">Designer / 03</p><h2>Curz Studio</h2></div><p>{t("designerText")}</p></section>
-    <section className="design-cta"><img src="/images/triade-living-premium.png" alt="Triade interior" /><div><h2><Multiline value={t("changeAtmosphere")} /></h2><Link href="/product" className="button button-light">{t("discoverProduct")}</Link></div></section>
+    <section className="design-cta"><img src="/images/triade-living-premium.png" alt="Triade interior" /><div><h2><Multiline value={t("changeAtmosphere")} /></h2><Link href="/#prodotto" className="button button-light">{t("discoverLamp")}</Link></div></section>
     <Footer /><CookieBanner />
   </main>;
 }

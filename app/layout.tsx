@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { TRIADE_PRICE } from "./lib/product";
 import { LanguageProvider } from "./components/LanguageProvider";
 
 const geistSans = Geist({
@@ -56,13 +55,6 @@ export default function RootLayout({
               description: "Lampada da parete scultorea composta da tre riflettori concavi in acciaio e cavo tessile personalizzabile.",
               material: "Acciaio",
               image: ["/images/triade-hero-cinematic.png", "/images/triade-catalog-off-v3.png"],
-              offers: {
-                "@type": "Offer",
-                priceCurrency: "EUR",
-                price: String(TRIADE_PRICE),
-                availability: "https://schema.org/PreOrder",
-                url: "/product",
-              },
             }).replace(/</g, "\\u003c"),
           }}
         />
